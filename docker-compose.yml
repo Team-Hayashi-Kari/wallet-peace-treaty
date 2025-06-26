@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  nodejs-app:
+    build:
+      context: ./nodejs-app
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./nodejs-app:/app
+      - /app/node_modules # pnpm の場合はシンボリックリンクが張られるため、ホストにnode_modulesを直接マウントしないほうが良い
+    environment:
+      DATABASE_URL: postgres://user:password@db:5432/mydatabase
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+    volumes:
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql # 初期化スクリプト（オプション）
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db_data:
