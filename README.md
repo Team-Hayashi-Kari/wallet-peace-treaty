@@ -1,5 +1,5 @@
 <div align="center">
-	<img width="300px", src="./images/wallet-peace-treaty-icon.png"/>
+	<img width="300px" src="./images/wallet-peace-treaty-icon.png" alt="お財布平和条約 ロゴ"/>
 </div>
 
 </br>
