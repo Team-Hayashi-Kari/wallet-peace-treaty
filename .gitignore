@@ -136,4 +136,4 @@ dist
 .pnp.*
 
 # routeTree
-./nodejs-app/src/routeTree.gen.ts
+/nodejs-app/src/routeTree.gen.ts
