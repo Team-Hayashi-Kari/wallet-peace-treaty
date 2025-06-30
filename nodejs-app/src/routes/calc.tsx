@@ -52,9 +52,9 @@ const CalculatorTabs: React.FC = () => {
 
     // タブを閉じる処理
     const closeTab = (idToClose: number, event: React.MouseEvent): void => {
-        event.stopPropagation(); // 親要素のタブ選択イベントの発火を防ぐ
+        event.stopPropagation();
 
-        if (calculators.length <= 1) return; // 最後のタブは消せない
+        if (calculators.length <= 1) return;
 
         const newCalculators = calculators.filter(c => c.id !== idToClose);
         setCalculators(newCalculators);
@@ -66,7 +66,7 @@ const CalculatorTabs: React.FC = () => {
     };
 
 
-    // --- 以下、計算ロジック (アクティブな電卓に対して動作) ---
+    //以下計算ロジック
 
     const handleNumberClick = (value: string): void => {
         if (!activeCalculator) return;
@@ -129,7 +129,7 @@ const CalculatorTabs: React.FC = () => {
         }
     };
 
-    // ボタンの定義は変更なし
+    // ボタンの定義
     const buttons: ButtonProps[] = [
         { id: "clear", label: "AC", handler: handleClear, className: "bg-red-500 hover:bg-red-600 col-span-2" },
         { id: "backspace", label: "⌫", handler: handleBackspace, className: "bg-gray-500 hover:bg-gray-600" },
@@ -157,7 +157,6 @@ const CalculatorTabs: React.FC = () => {
     return (
         <div className="bg-gray-100 dark:bg-gray-900 flex items-center justify-center min-h-screen">
             <div className="w-full max-w-sm mx-auto">
-                {/* --- タブバーUI --- */}
                 <div className="flex items-center bg-gray-700 rounded-t-lg px-2 pt-2">
                     {calculators.map((calc, index) => (
                         <div
@@ -173,8 +172,6 @@ const CalculatorTabs: React.FC = () => {
                     ))}
                     <button onClick={addTab} className="ml-2 px-3 py-1 text-2xl text-gray-400 hover:text-white">+</button>
                 </div>
-
-                {/* --- 電卓本体 --- */}
                 <div className="bg-gray-800 rounded-b-2xl shadow-2xl p-6 space-y-6">
                     <div className="bg-gray-900 rounded-lg p-4 text-right break-words">
                         <div className="text-gray-400 text-2xl h-8">{activeCalculator?.history || ""}</div>
@@ -187,7 +184,7 @@ const CalculatorTabs: React.FC = () => {
                                 id={btn.id}
                                 onClick={btn.handler}
                                 className={`${baseButtonClass} ${btn.className || numberButtonClass}`}
-                                disabled={!activeCalculator} // アクティブなタブがない場合はボタンを無効化
+                                disabled={!activeCalculator}
                             >
                                 {btn.label}
                             </button>
@@ -201,8 +198,7 @@ const CalculatorTabs: React.FC = () => {
 
 export default CalculatorTabs;
 
-// --- ルートの定義 ---
-// createFileRouteのcomponentに、上で定義したCalculatorTabsコンポーネントを指定します。
+//ルートの定義
 export const Route = createFileRoute('/calc')({
     component: CalculatorTabs,
 });
