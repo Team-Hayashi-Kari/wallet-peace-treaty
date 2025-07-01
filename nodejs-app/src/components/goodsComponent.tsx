@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react'
+import { type FC } from 'react'
 
-const goodsComponent: React.FC<object> = () => {
+const GoodsComponent: FC = () => {
 	return (
 		<>
 			<div>
@@ -12,4 +12,4 @@ const goodsComponent: React.FC<object> = () => {
 	)
 }
 
-export default goodsComponent
+export default GoodsComponent

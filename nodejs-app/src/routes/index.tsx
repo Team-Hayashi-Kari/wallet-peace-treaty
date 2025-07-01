@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@yamada-ui/fontawesome"
 import { faPoo } from "@fortawesome/free-solid-svg-icons"
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
-import './App.css'
+// import './App.css'
 
 export const Route = createFileRoute('/')({
   component: RouteComponent,
