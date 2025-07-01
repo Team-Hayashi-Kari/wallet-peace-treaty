@@ -135,5 +135,6 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# routeTree
+# tanstack router
 /nodejs-app/src/routeTree.gen.ts
+/nodejs-app/.tanstack/tmp/
