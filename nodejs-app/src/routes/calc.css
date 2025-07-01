@@ -1,6 +1,6 @@
 /* === 変数定義 === */
 :root {
-    --bg-color: #0f172a;
+    --bg-color: white;
     --calculator-bg: #1e293b;
     --display-bg: #0f172a;
     --tab-bg: #334155;
@@ -34,15 +34,7 @@
     width: 100%;
     max-width: 360px;
     margin: 0 auto;
-    border-radius: 1rem;
-    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
-    overflow: hidden;
-}
-
-/* === タブ === */
-.tabs-container {
-    display: flex;
-    align-items: center;
+    border-radius: 1rem; 
     background-color: var(--tab-bg);
     padding: 0.5rem 0.5rem 0 0.5rem;
 }
