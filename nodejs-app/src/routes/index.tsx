@@ -25,6 +25,7 @@ function RouteComponent() {
         </a>
       </div>
       <h1>お財布平和条約</h1>
+      <h3>割り勘をスムーズに行うツール</h3>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
@@ -32,6 +33,10 @@ function RouteComponent() {
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
+      </div>
+      <div classname="explain">
+        <h2>みんなとご飯を食べたとき、割り勘するの大変じゃないですか？</h2>
+        <h2>そんな悩み、解決します</h2>
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
