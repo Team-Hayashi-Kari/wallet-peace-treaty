@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router"
-import React, { useState, useMemo } from 'react';
+import React, { useContext } from 'react';
 
 import "./App.css";
 import NumBtn from "./components/NumBtn";
@@ -15,7 +15,7 @@ onPlusClick,
 onMinusClick
 } from "./reducers";
 
-const App: React.FC = () => {
+const CalculatorTabs: React.FC = () => {
 const { state } = useContext(Context);
 
 return (
@@ -65,4 +65,4 @@ return (
 
 export default CalculatorTabs;
 
-export const Route = createFileRoute('/calc')({component: CalculatorTabs,});
+export const Route = createFileRoute('/App')({component: CalculatorTabs,});

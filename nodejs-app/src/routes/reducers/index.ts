@@ -196,7 +196,6 @@ switch (action.types) {
     }
 
     default:
-      const _: never = action; // eslint-disable-line
 }
 return state;
 };

@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react";
+import { type FC, useContext } from "react";
 import Context from "./Context";
 import { onNumClick } from "../reducers";
 

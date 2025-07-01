@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { AppState, Actions, initialAppState } from "../reducers";
+import { type AppState, type Actions, initialAppState } from "../reducers";
 
 type ContextState = {
 state: AppState;

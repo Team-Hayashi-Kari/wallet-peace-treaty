@@ -1,6 +1,6 @@
-import React, { FC, useContext } from "react";
+import { type FC, useContext } from "react";
 import Context from "./Context";
-import { Actions } from "../reducers";
+import type { Actions } from "../reducers";
 
 const OperatorBtn: FC<{ o: string; action: Actions }> = ({ o, action }) => {
 const { dispatch } = useContext(Context);
