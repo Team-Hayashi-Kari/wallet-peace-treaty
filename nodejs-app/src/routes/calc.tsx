@@ -113,7 +113,8 @@ const CalculatorTabs: React.FC = () => {
 
         try {
             const sanitizedExpression = activeCalculator.input.replace(/[^-()\d/*+.]/g, '');
-            const result = new Function('(`use strict`;return (${sanitizedExpression})`)')();
+            const result = new Function(`return ${sanitizedExpression}`)();
+
 
             if (typeof result !== 'number' || !isFinite(result)) {
                 throw new Error("無効な計算結果です。");
