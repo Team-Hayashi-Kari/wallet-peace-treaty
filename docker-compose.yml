@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   nodejs-app:
+    env_file: .env
     build:
       context: ./nodejs-app
       dockerfile: Dockerfile
@@ -18,6 +19,7 @@ services:
       - app-network
 
   db:
+    env_file: .env
     image: postgres:17-alpine
     environment:
       POSTGRES_USER: ${POSTGRES_USER}

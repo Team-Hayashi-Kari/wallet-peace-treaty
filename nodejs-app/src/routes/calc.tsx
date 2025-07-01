@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router"
 import React, { useState, useMemo } from 'react';
+import './calc.css';
 
 // ボタンのプロパティに対する型定義
 interface ButtonProps {
@@ -112,7 +113,8 @@ const CalculatorTabs: React.FC = () => {
 
         try {
             const sanitizedExpression = activeCalculator.input.replace(/[^-()\d/*+.]/g, '');
-            const result = new Function('(`use strict`;return (${sanitizedExpression})`)')();
+            const result = new Function(`return ${sanitizedExpression}`)();
+
 
             if (typeof result !== 'number' || !isFinite(result)) {
                 throw new Error("無効な計算結果です。");
@@ -130,60 +132,57 @@ const CalculatorTabs: React.FC = () => {
     };
 
     // ボタンの定義
-    const buttons: ButtonProps[] = [
-        { id: "clear", label: "AC", handler: handleClear, className: "bg-red-500 hover:bg-red-600 col-span-2" },
-        { id: "backspace", label: "⌫", handler: handleBackspace, className: "bg-gray-500 hover:bg-gray-600" },
-        { id: "divide", label: "÷", handler: () => handleOperatorClick("/"), className: "bg-orange-500 hover:bg-orange-600" },
+        const buttons: ButtonProps[] = [
+        { id: "clear", label: "AC", handler: handleClear, className: "btn--special btn--wide" },
+        { id: "backspace", label: "⌫", handler: handleBackspace, className: "btn--special" },
+        { id: "divide", label: "÷", handler: () => handleOperatorClick("/"), className: "btn--operator" },
         { id: "seven", label: "7", handler: () => handleNumberClick("7") },
         { id: "eight", label: "8", handler: () => handleNumberClick("8") },
         { id: "nine", label: "9", handler: () => handleNumberClick("9") },
-        { id: "multiply", label: "×", handler: () => handleOperatorClick("*"), className: "bg-orange-500 hover:bg-orange-600" },
+        { id: "multiply", label: "×", handler: () => handleOperatorClick("*"), className: "btn--operator" },
         { id: "four", label: "4", handler: () => handleNumberClick("4") },
         { id: "five", label: "5", handler: () => handleNumberClick("5") },
         { id: "six", label: "6", handler: () => handleNumberClick("6") },
-        { id: "subtract", label: "−", handler: () => handleOperatorClick("-"), className: "bg-orange-500 hover:bg-orange-600" },
+        { id: "subtract", label: "−", handler: () => handleOperatorClick("-"), className: "btn--operator" },
         { id: "one", label: "1", handler: () => handleNumberClick("1") },
         { id: "two", label: "2", handler: () => handleNumberClick("2") },
         { id: "three", label: "3", handler: () => handleNumberClick("3") },
-        { id: "add", label: "+", handler: () => handleOperatorClick("+"), className: "bg-orange-500 hover:bg-orange-600" },
-        { id: "zero", label: "0", handler: () => handleNumberClick("0"), className: "col-span-2" },
+        { id: "add", label: "+", handler: () => handleOperatorClick("+"), className: "btn--operator" },
+        { id: "zero", label: "0", handler: () => handleNumberClick("0"), className: "btn--wide" },
         { id: "decimal", label: ".", handler: () => handleNumberClick(".") },
-        { id: "equals", label: "=", handler: handleCalculate, className: "bg-orange-500 hover:bg-orange-600" },
+        { id: "equals", label: "=", handler: handleCalculate, className: "btn--operator" },
     ];
 
-    const baseButtonClass = "text-white text-3xl font-medium rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white transition-all duration-150 ease-in-out h-20";
-    const numberButtonClass = "bg-gray-700 hover:bg-gray-800";
-
     return (
-        <div className="bg-gray-100 dark:bg-gray-900 flex items-center justify-center min-h-screen">
-            <div className="w-full max-w-sm mx-auto">
-                <div className="flex items-center bg-gray-700 rounded-t-lg px-2 pt-2">
+        <div className="calculator-app">
+            <div className="calculator-wrapper">
+                <div className="tabs-container">
                     {calculators.map((calc, index) => (
                         <div
                             key={calc.id}
                             onClick={() => setActiveTabId(calc.id)}
-                            className={`flex items-center cursor-pointer px-4 py-2 border-b-4 ${activeTabId === calc.id ? `border-orange-500 bg-gray-800` : `border-transparent`} rounded-t-md`}
+                            className={`tab ${activeTabId === calc.id ? 'tab--active' : ''}`}
                         >
-                            <span className={`mr-2 ${activeTabId === calc.id ? `text-white` : `text-gray-400`}`}>電卓 {index + 1}</span>
+                            <span className="tab-label">電卓 {index + 1}</span>
                             {calculators.length > 1 && (
-                                <button onClick={(e) => closeTab(calc.id, e)} className="text-gray-500 hover:text-white text-lg leading-none">&times;</button>
+                                <button onClick={(e) => closeTab(calc.id, e)} className="tab-close-btn">&times;</button>
                             )}
                         </div>
                     ))}
-                    <button onClick={addTab} className="ml-2 px-3 py-1 text-2xl text-gray-400 hover:text-white">+</button>
+                    <button onClick={addTab} className="tab-add-btn">+</button>
                 </div>
-                <div className="bg-gray-800 rounded-b-2xl shadow-2xl p-6 space-y-6">
-                    <div className="bg-gray-900 rounded-lg p-4 text-right break-words">
-                        <div className="text-gray-400 text-2xl h-8">{activeCalculator?.history || ""}</div>
-                        <div id="display" className="text-white text-5xl font-bold h-14">{activeCalculator?.input || "0"}</div>
+                <div className="calculator-body">
+                    <div className="display">
+                        <div className="display-history">{activeCalculator?.history || ""}</div>
+                        <div id="display" className="display-input">{activeCalculator?.input || "0"}</div>
                     </div>
-                    <div className="grid grid-cols-4 gap-4">
+                    <div className="buttons-grid">
                         {buttons.map(btn => (
                             <button
                                 key={btn.id}
                                 id={btn.id}
                                 onClick={btn.handler}
-                                className={`${baseButtonClass} ${btn.className || numberButtonClass}`}
+                                className={`btn ${btn.className || ''}`}
                                 disabled={!activeCalculator}
                             >
                                 {btn.label}
@@ -198,7 +197,6 @@ const CalculatorTabs: React.FC = () => {
 
 export default CalculatorTabs;
 
-//ルートの定義
 export const Route = createFileRoute('/calc')({
     component: CalculatorTabs,
 });
