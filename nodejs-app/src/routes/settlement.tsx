@@ -1,30 +1,40 @@
 /** @jsxImportSource @emotion/react */
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
 // import { css } from '@emotion/react'
-import { Button, FormControl, Stack, UIProvider } from '@yamada-ui/react'
-import GoodsComponent from '@components/goodsComponent'
+import {
+  Box,
+  Grid,
+  GridItem,
+  Heading,
+} from "@yamada-ui/react";
 
-export const Route = createFileRoute('/settlement') ({
+import GoodsInsertForm from "@components/GoodsInsertForm";
+import GoodsList from "@components/GoodsList";
+
+export const Route = createFileRoute("/settlement")({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
   return (
-		<UIProvider>
-			<Stack direction={{ base: 'column', md: 'row' }} >
-				<FormControl label='商品名' errorMessage='商品名を入力してください'>
-					<input type='text' placeholder='冷たい火山' />
-				</FormControl>
-				<FormControl label='価格' errorMessage='価格を入力してください'>
-					<input type='number' placeholder='価格' />
-				</FormControl>
-				<Button variant='unstyled'>決定</Button>
-			</Stack>
-			<GoodsComponent />
-			<div>
-				<h1>Settlement Page</h1>
-				<p>This is the settlement page content.</p>
-			</div>
-		</UIProvider>
-	)
+    <Box p="md" rounded="md" bg="white" maxW={{ base: '90%', md: '600px'}} mx="auto">
+      <Heading as="h2" size="xl" mb="lg" textAlign="center">
+        Our Products
+      </Heading>
+      <Grid
+        templateColumns={{
+          base: "repeat(2, 1fr)",
+          md: "repeat(1, 1fr)",
+        }}
+        // gap="lg"
+      >
+				<GridItem shadow="lg" p="lg" rounded="lg">
+					<GoodsList />
+					<GoodsInsertForm />
+				</GridItem>
+				<GridItem shadow="lg" p="lg" rounded="lg">
+				</GridItem>
+      </Grid>
+    </Box>
+  );
 }
