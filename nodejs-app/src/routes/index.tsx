@@ -1,10 +1,12 @@
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react'
 import { useState } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import { FontAwesomeIcon } from "@yamada-ui/fontawesome"
 import { faPoo } from "@fortawesome/free-solid-svg-icons"
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
-import './App.css'
+// import './App.css'
 
 export const Route = createFileRoute('/')({
   component: RouteComponent,
@@ -25,7 +27,7 @@ function RouteComponent() {
         </a>
       </div>
       <h1>お財布平和条約</h1>
-      <h3>割り勘をスムーズに行うツール</h3>
+        <h3>割り勘をスムーズに行うツール</h3>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
@@ -34,7 +36,7 @@ function RouteComponent() {
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
       </div>
-      <div classname="explain">
+      <div>
         <h2>みんなとご飯を食べたとき、割り勘するの大変じゃないですか？</h2>
         <h2>そんな悩み、解決します</h2>
       </div>
