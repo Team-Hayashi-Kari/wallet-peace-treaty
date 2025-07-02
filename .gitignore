@@ -138,3 +138,6 @@ dist
 # tanstack router
 /nodejs-app/src/routeTree.gen.ts
 /nodejs-app/.tanstack/tmp/
+
+# DS_Store
+.DS_Store
