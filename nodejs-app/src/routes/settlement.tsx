@@ -11,14 +11,14 @@ export const Route = createFileRoute('/settlement') ({
 function RouteComponent() {
   return (
 		<UIProvider>
-			<Stack>
+			<Stack direction={{ base: 'column', md: 'row' }} >
 				<FormControl label='商品名' errorMessage='商品名を入力してください'>
 					<input type='text' placeholder='冷たい火山' />
 				</FormControl>
 				<FormControl label='価格' errorMessage='価格を入力してください'>
 					<input type='number' placeholder='価格' />
 				</FormControl>
-				<Button colorScheme='unstyled'>決定</Button>
+				<Button variant='unstyled'>決定</Button>
 			</Stack>
 			<GoodsComponent />
 			<div>
