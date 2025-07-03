@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router"
 import React, { useState, useMemo } from 'react';
-// import './calc.css';
+import './calc.css';
 
 // ボタンのプロパティに対する型定義
 interface ButtonProps {
