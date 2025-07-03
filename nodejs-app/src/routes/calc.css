@@ -42,13 +42,13 @@
 }
 
 .calculator-wrapper {
-    width: 100%;
-    max-width: 420px; /* サイズを大きく調整 */
-    min-width: 380px; /* 最小幅を設定 */
+    width: 400px;
+    max-width: 400px;
+    min-width: 400px;
     border-radius: 1rem;
     background-color: var(--tab-bg);
     padding: 0.5rem 0.5rem 0 0.5rem;
-    flex-shrink: 0; /* サイズが変わらないように固定 */
+    flex-shrink: 0;
 }
 
 /* === タブシステム === */
@@ -137,10 +137,10 @@
 .display {
     background-color: var(--display-bg);
     border-radius: 0.5rem;
-    padding: 1.2rem;
+    padding: 1rem;
     text-align: right;
     word-wrap: break-word;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
 }
 
 .display-history {
@@ -153,25 +153,29 @@
 .display-input {
     color: var(--text-primary);
     font-family: var(--font-mono);
-    font-size: 2.75rem;
+    font-size: 2.2rem;
     font-weight: bold;
-    height: 3.5rem;
+    height: 2.8rem;
 }
 
 /* === ボタン === */
 .buttons-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 0.75rem; /* ギャップを調整してボタン間の空白を減らす */
+    gap: 0.75rem; /* 0.875rem → 0.75rem に縮小 */
+    width: 100%;
+    max-width: 320px; /* 370px → 320px に縮小 */
+    margin: 0 auto; /* 中央揃え */
 }
 
 .btn {
-    height: 4.5rem; /* ボタンの高さを調整 */
+    height: 4rem; /* 5rem → 4rem に縮小 */
+    min-width: 60px; /* 80px → 60px に縮小 */
     border: none;
     border-radius: 0.5rem;
     background-color: var(--btn-bg);
     color: var(--text-primary);
-    font-size: 1.4rem;
+    font-size: 1.2rem; /* 1.4rem → 1.2rem に縮小 */
     font-weight: 500;
     cursor: pointer;
     transition: all 0.15s ease-in-out;
@@ -248,13 +252,29 @@
     }
     
     .calculators-container {
-        flex-direction: column;
-        align-items: center;
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .calculators-container:has(.calculator-wrapper:nth-child(3)) .calculator-wrapper {
+        width: 340px;
+        max-width: 340px;
+        min-width: 340px;
+    }
+
+    .calculators-container:has(.calculator-wrapper:nth-child(3)) .btn {
+        height: 3rem;
+        font-size: 1rem;
+        min-width: 50px;
     }
     
     .calculator-wrapper {
-        min-width: 320px;
-        max-width: 100%;
+        width: 370px;
+        min-width: 370px;
+        max-width: 370px;
     }
 }
 
