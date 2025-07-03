@@ -16,4 +16,10 @@ export default defineConfig({
     force: true,
 	exclude: ['node_modules/.cache/storybook']
   },
+  resolve: {
+    alias: {
+      '@components': '/src/components',
+      '@types': '/src/types',
+    }
+  },
 })
