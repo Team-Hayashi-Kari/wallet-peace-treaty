@@ -1,6 +1,5 @@
 // src/components/Calculator/index.tsx
 import React from 'react';
-import type { CalculatorState } from '@types/index';
 import Display from './Display';
 import ButtonsGrid from './ButtonsGrid';
 
@@ -8,6 +7,13 @@ interface CalculatorProps {
     state: CalculatorState;
     handlers: any; // 本来はより厳密な型が良い
     isActive: boolean;
+}
+
+/** 各電卓インスタンスの状態を表す型定義 */
+export interface CalculatorState {
+    id: number;
+    input: string;
+    history: string;
 }
 
 /** 単一の電卓UI（ディスプレイとボタン）コンポーネント */

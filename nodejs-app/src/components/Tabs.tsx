@@ -1,6 +1,12 @@
 // src/components/Tabs.tsx
 import React from 'react';
-import type { CalculatorState } from '@types/index';
+
+/** 各電卓インスタンスの状態を表す型定義 */
+export interface CalculatorState {
+    id: number;
+    input: string;
+    history: string;
+}
 
 interface TabsProps {
     calculators: CalculatorState[];
@@ -10,7 +16,7 @@ interface TabsProps {
     onAddTab: () => void;
 }
 
-/** タブ表示と操作を行うコンポーネント */
+//タブ表示と操作を行うコンポーネント
 const Tabs: React.FC<TabsProps> = ({ calculators, activeTabId, onSelectTab, onCloseTab, onAddTab }) => (
     <div className="tabs-container">
         {calculators.map((calc, index) => (

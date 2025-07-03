@@ -1,6 +1,14 @@
 // src/components/Calculator/CalcButton.tsx
 import React from 'react';
-import type { ButtonProps } from '@types/index';
+
+/** ボタンのプロパティに対する型定義 */
+export interface ButtonProps {
+    id: string;
+    label: string | JSX.Element;
+    handler: (value?: string) => void;
+    className?: string;
+    value?: string;
+}
 
 /** 個々のボタンコンポーネント */
 const CalcButton: React.FC<ButtonProps> = ({ id, label, handler, className = '', value }) => (

@@ -1,12 +1,18 @@
 // src/routes/calc.tsx
 import { createFileRoute } from '@tanstack/react-router';
 import React, { useState, useMemo } from 'react';
-import type { CalculatorState } from '@types/index';
 
 // スタイルシートとコンポーネントをインポート
 import './calc.css';
 import Calculator from '@components/Calculator';
 import Tabs from '@components/Tabs';
+
+/** 各電卓インスタンスの状態を表す型定義 */
+export interface CalculatorState {
+    id: number;
+    input: string;
+    history: string;
+}
 
 // 電卓アプリケーションのメインコンポーネント
 const CalculatorApp: React.FC = () => {
