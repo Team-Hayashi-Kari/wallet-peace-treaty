@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 // import { css } from '@emotion/react'
 import {
   Box,
+  Button,
   Grid,
   GridItem,
   Heading,
@@ -55,7 +56,7 @@ function RouteComponent() {
 				<GridItem shadow="lg" p="lg" rounded="lg">
 					<AddUserForm users={users} setUsers={setUsers}/>
 					<UserGoodsLinkForm users={users} goods={goods} setUsers={setUsers} />
-					<ProductAssignment users={users} goods={goods} setGoods={setGoods} />
+					<ProductAssignment users={users} goods={goods} setGoods={setGoods} setUsers={setUsers} />
 				</GridItem>
       </Grid>
     </Box>

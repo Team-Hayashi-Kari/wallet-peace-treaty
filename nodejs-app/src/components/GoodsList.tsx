@@ -23,7 +23,7 @@ const GoodsList: FC<GoodsListProps> = ({ goods }) => {
 						<Box>
 							{item.name}
 						</Box>
-						<Box>{item.price} 円 × {item.amount ?? 1}</Box>
+						<Box>{item.price} 円 x {item.amount ?? 1}</Box>
 					</HStack>
 				)}
 			</For>
