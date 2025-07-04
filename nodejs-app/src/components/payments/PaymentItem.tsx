@@ -2,7 +2,7 @@ import { type FC, KeyboardEvent } from "react";
 
 import {
     Checkbox,
-    HStack,
+    Grid,
     Text,
     VStack,
 } from "@yamada-ui/react";
@@ -37,8 +37,10 @@ export const PaymentItem: FC<PaymentItemProps> = ({payment, updatePayment, delet
     };
 
     return(
-        <HStack
+        <Grid
+            templateColumns="aut 1fr minmax(80px, auto) 110px 100px auto"
             p="md"
+            gap="md"
             border="1px solid"
             borderColor="gray.200"
             rounded="md"
@@ -52,23 +54,20 @@ export const PaymentItem: FC<PaymentItemProps> = ({payment, updatePayment, delet
                 onChange={handleCheckChange}
             />
 
-            <VStack flex="1" align="flex-start" spacing="0">
-                <Text fontSize="lg" fontWeight="bold" as={payment.isPaid ? 'del' : 'span'}>
-                    {payment.userName}
-                </Text>
-                <Text color="gray.600">
-                    ¥{payment.amount.toLocaleString()}
-                </Text>
-            </VStack>
+            <Text fontSize="lg" fontWeight="bold" as={payment.isPaid ? 'del' : 'span'}>
+                {payment.userName}
+            </Text>
+            <Text color="gray.600">
+                ¥{payment.amount.toLocaleString()}
+            </Text>
 
-            <VStack align="flex-end" spacing="0">
-                <Text fontSize="sm" color="gray.500">
-                    {payment.paymentMethod}
-                </Text>
-                <Text fontSize="xs" color="gray.400">
-                    {payment.date}
-                </Text>
-            </VStack>
+            <Text fontSize="sm" color="gray.500">
+                {payment.paymentMethod}
+            </Text>
+
+            <Text fontSize="xs" color="gray.400">
+                {payment.date}
+            </Text>
 
             <FontAwesomeIcon
                 icon={faTrash}
@@ -82,6 +81,6 @@ export const PaymentItem: FC<PaymentItemProps> = ({payment, updatePayment, delet
                 role="button"
                 tabIndex={0}
             />
-        </HStack>
+        </Grid>
     );
 };

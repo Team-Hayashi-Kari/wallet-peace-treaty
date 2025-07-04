@@ -1,4 +1,4 @@
-import {Box, Heading, VStack, Divider} from "@yamada-ui/react";
+import {Box, Heading, VStack, Grid, GridItem} from "@yamada-ui/react";
 
 import {usePayments} from '../hooks/usePayments';
 import {PaymentForm} from '../components/payments/PaymentForm';
@@ -14,14 +14,26 @@ export const PaymentsPage = () => {
                     精算管理モード
                 </Heading>
 
-                <PaymentForm addPayment={addPayment} />
-                <Divider />
+                <Grid
+                    templateColumns="1fr 1fr"
+                    gap="lg"
+                >
+                    <GridItem>
+                        <VStack>
+                            <PaymentForm addPayment={addPayment} />
+                        </VStack>
+                    </GridItem>
 
-                <PaymentList
-                payments={payments}
-                updatePayment={updatePayment}
-                deletePayment={deletePayment}
-                />
+                    <GridItem>
+                        <VStack maxH="80vh" overflowY="auto">
+                            <PaymentList
+                                payments={payments}
+                                updatePayment={updatePayment}
+                                deletePayment={deletePayment}
+                            />
+                        </VStack>
+                    </GridItem>
+                </Grid>
             </VStack>
         </Box>
     )
