@@ -129,7 +129,7 @@ const GoodsComponent: FC<GoodsComponentProps> = ({ keyMax, setGoods }) => {
 					placeholder="1"
           value={amount} // 入力値とstateをバインド
           onChange={(e) => setAmount(e.target.value)} // 入力値の変更をstateに反映
-					width={"50"}
+					width={"50px"}
         />
       </FormControl>
 			</HStack>
