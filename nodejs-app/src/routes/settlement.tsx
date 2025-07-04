@@ -35,8 +35,8 @@ type User = {
 }
 
 function RouteComponent() {
-	const [goods, setGoods] = useState<Goods[]>([{id: 1, name: '商品A', price: 1000, amount: 2}, {id: 2, name: '商品B', price: 1000, amount: 2}, {id: 3, name: '商品C', price: 1000, amount: 2}]);
-	const [users, setUsers] = useState<User[]>([{id: 1, name: 'ユーザーA', goodsIds: []}]);
+	const [goods, setGoods] = useState<Goods[]>([]);
+	const [users, setUsers] = useState<User[]>([]);
 
   return (
     <Box p="md" rounded="md" bg="white" maxW={{ base: '100%', md: '600px'}} mx="auto">
