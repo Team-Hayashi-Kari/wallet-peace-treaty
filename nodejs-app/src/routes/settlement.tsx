@@ -7,6 +7,7 @@ import {
   Grid,
   GridItem,
   Heading,
+	VStack,
 } from "@yamada-ui/react";
 
 import GoodsInsertForm from "@components/GoodsInsertForm";
@@ -24,7 +25,7 @@ type Goods = {
 	id: number;
 	name: string;
 	price: number;
-	amount?: number;
+	amount: number;
 }
 
 type User = {
@@ -49,10 +50,10 @@ function RouteComponent() {
         }}
         gap="md"
       >
-				<GridItem shadow="lg" p="lg" rounded="lg">
+				<VStack shadow="lg" p="lg" rounded="lg" alignContent='space-between'>
 					<GoodsList goods={goods} />
 					<GoodsInsertForm keyMax={Math.max(...goods.map(item => item.id))} setGoods={setGoods}/>
-				</GridItem>
+				</VStack>
 				<GridItem shadow="lg" p="lg" rounded="lg">
 					<AddUserForm users={users} setUsers={setUsers}/>
 					<UserGoodsLinkForm users={users} goods={goods} setUsers={setUsers} />

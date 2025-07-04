@@ -16,7 +16,7 @@ type GoodsListProps = {
 
 const GoodsList: FC<GoodsListProps> = ({ goods }) => {
 	return (
-		<VStack p="md" rounded="md">
+		<VStack p="md" rounded="md" marginBottom={'auto'}>
 			<For each={goods}>
 				{item => (
 					<HStack key={item.id} w="100%" justifyContent="space-between" p="md" borderBottom="1px solid #e2e8f0">

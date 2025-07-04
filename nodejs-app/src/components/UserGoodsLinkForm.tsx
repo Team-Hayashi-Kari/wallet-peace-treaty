@@ -45,6 +45,8 @@ const UserGoodsLinkForm: FC<UserGoodsLinkFormProps> = ({
 	// const [usersAllGoodsIdList, setUsersAllGoodsIdList] = useState<number[]>([]);
 
 	const handleSubmit = () => {
+		console.log(JSON.stringify(users, null, 2));
+		console.log(JSON.stringify(goods, null, 2));
 		// setUsersAllGoodsIdList((users.map((user) => user.goodsIds)).flat());
 		// console.log(JSON.stringify(usersAllGoodsIdList, null, 2));
 		setSelectedGoodsValid(!selectedGoods);

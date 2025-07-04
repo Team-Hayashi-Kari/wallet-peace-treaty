@@ -8,7 +8,7 @@ type Goods = {
 	id: number;
 	name: string;
 	price: number;
-	amount?: number;
+	amount: number;
 };
 
 type User = {
@@ -26,12 +26,32 @@ type ProductAssignmentProps = {
 
 // type Data = { select: string }
 
+const subtractArray = (originalArray:number[], elementsToRemove:number[]) => {
+  // 元の配列のコピーを作成し、破壊的な変更を避ける
+  const resultArray = [...originalArray];
+
+  // 削除する要素の配列をループ
+  for (const element of elementsToRemove) {
+    // 現在の要素が resultArray に存在するかどうかを確認
+    const index = resultArray.indexOf(element);
+
+    // 存在すればその要素を削除
+    if (index !== -1) {
+      resultArray.splice(index, 1);
+    }
+  }
+
+  return resultArray;
+}
+
 const ProductAssignment: FC<ProductAssignmentProps> = ({
 	goods,
 	users,
 	setGoods,
 	setUsers,
 }) => {
+	const usersAllGoodsIdList = (users.map((user) => user.goodsIds)).flat();
+	const insertRemainingGoods = subtractArray(goods.flatMap((item) => Array(item.amount).fill(item.id)), usersAllGoodsIdList);
 	// 商品をユーザーからひとつだけ削除する関数
 	const removeGoodsFromUser = (userId: number, goodsId: number) => {
 		if (setUsers) {
@@ -110,6 +130,25 @@ const ProductAssignment: FC<ProductAssignmentProps> = ({
 					</HStack>
 				)}
 			</For>
+			{/* まだ割り当てられていない商品を表示 */}
+			{goods.length > 0 && (
+				<VStack>
+					<Box fontWeight="bold">割り当てられていない商品</Box>
+					<For each={[...new Set(insertRemainingGoods)]}>
+						{(id) => {
+							const item = goods.find((item) => item.id === id);
+							return (
+								<Box>
+									{item ? `${item.name} - ${item.price} 円` : "商品情報がありません"} x {insertRemainingGoods.filter((itemId) => itemId === id).length}
+								</Box>
+							)
+						}}
+					</For>
+					{insertRemainingGoods.length === 0 && (
+						<Box>{"すべての商品の割り当ては終わりました。:)"}</Box>
+					)}
+				</VStack>
+			)}
 		</VStack>
 	);
 };
