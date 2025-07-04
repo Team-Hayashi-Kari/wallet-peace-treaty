@@ -1,0 +1,35 @@
+# Git関連
+.git
+.gitignore
+
+# Node.js関連
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-store/ # pnpm のグローバルストア（ローカルでのみ必要）
+
+# ビルド成果物
+dist/
+build/
+.turbo/ # Turborepo などモノレポツールを使用している場合
+
+# 環境変数ファイル
+.env
+.env.* # .env.development, .env.production など全ての.envファイルを無視
+
+# Docker関連
+Dockerfile* # Dockerfile自身やDockerfile.prodなどを無視
+docker-compose* # docker-compose.ymlやdocker-compose-prod.yamlなどを無視
+
+# IDEやOSの一時ファイル
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# その他のログや一時ファイル
+logs/
+*.log
+tmp/
+temp/

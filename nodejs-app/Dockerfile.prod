@@ -1,0 +1,54 @@
+# nodejs-app/Dockerfile.prod
+# マルチステージビルドを使用して、最終イメージを軽量化
+
+# --- ビルドステージ ---
+# ベースイメージとしてNode.js 24のAlpine版を使用
+FROM node:24-alpine AS build
+
+# pnpm をインストール
+# Alpine Linuxの場合、corepack が標準で付属しているため、corepack を有効にするのが推奨
+RUN apk add --no-cache libc6-compat
+RUN corepack enable
+
+# 作業ディレクトリを設定
+WORKDIR /app
+
+# package.jsonとpnpm-lock.yamlをコピー
+COPY package.json pnpm-lock.yaml ./
+
+# 依存関係をインストール (pnpmを使用)
+# 本番環境でのデプロイなので、開発依存は不要なため --prod を使用
+RUN pnpm install --prod --frozen-lockfile
+
+# アプリケーションのコードをコピー
+COPY . .
+
+# Vite アプリケーションを本番用にビルド
+# VITE_API_URL などの環境変数は、ビルド時にここで設定します
+# 例: ENV VITE_API_URL=http://backend:3000
+RUN pnpm build
+
+# --- プロダクションステージ ---
+# 静的ファイルを配信するための軽量なNode.jsイメージを使用
+FROM node:24-alpine
+
+# pnpm をインストール (serve のために必要)
+RUN apk add --no-cache libc6-compat
+RUN corepack enable
+
+# 作業ディレクトリを設定
+WORKDIR /app
+
+# serve パッケージをグローバルにインストール
+RUN pnpm add -g serve
+
+# ビルドステージで生成された静的ファイルをコピー
+COPY --from=build /app/dist ./dist
+
+# アプリケーションがリッスンするポート
+# serve のデフォルトポートは5000ですが、Viteのプレビューと同じ5173に合わせる
+EXPOSE 5173
+
+# ビルドされた静的ファイルを serve で配信
+# --listen 0.0.0.0:5173 で全てのネットワークインターフェースでリッスン
+CMD ["serve", "-s", "dist", "-l", "5173"]
