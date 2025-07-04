@@ -1,0 +1,52 @@
+# docker-compose-prod.yaml
+version: '3.8'
+
+services:
+  nodejs-app:
+    # 本番環境用のDockerfileを使用
+    build:
+      context: ./nodejs-app
+      dockerfile: Dockerfile.prod # production用のDockerfileを指定
+    # 本番環境でアプリケーションがリッスンするポートをホストにマッピング
+    # Viteのデフォルトは5173ですが、本番では80番などを使うことが多いです
+    ports:
+      - "80:5173" # ホストの80番ポートをコンテナの5173番ポートにマッピング
+    # 本番環境ではソースコードのボリュームマウントは不要（イメージにビルド済み）
+    # volumes:
+    #   - ./nodejs-app:/app
+    #   - /app/node_modules
+    environment:
+      - NODE_ENV=production
+      # Vite アプリケーションのAPI URLは、ビルド時に埋め込まれるため、
+      # ここで設定するのではなく、Dockerfile.prod のビルドステップで設定するか、
+      # 必要に応じて環境変数として渡します。
+      # 例: VITE_API_URL=http://backend:3000
+    depends_on:
+      - db
+    networks:
+      - app-network
+    restart: always # 本番環境では常に再起動を試みる
+
+  db:
+    env_file: .env.prod # 本番環境用の環境変数ファイル
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql # 初期化スクリプト（オプション）
+      - db_data:/var/lib/postgresql/data
+    # 本番環境では、セキュリティのためデータベースへの直接アクセスポートは公開しないことを推奨
+    # 外部ツールからアクセスする場合は、必要に応じてポートマッピングを残してください
+    # - "5432:5432"
+    networks:
+      - app-network
+    restart: always # 本番環境では常に再起動を試みる
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db_data:
