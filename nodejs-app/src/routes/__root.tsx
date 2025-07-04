@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Outlet, createRootRoute } from '@tanstack/react-router'
+import { UIProvider } from '@yamada-ui/react'
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -8,7 +9,9 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <React.Fragment>
-      <Outlet />
+			<UIProvider>
+				<Outlet />
+			</UIProvider>
     </React.Fragment>
   )
 }
