@@ -1,5 +1,5 @@
 import { type FC, useState } from 'react';
-import { Button, FormControl, Input, VStack } from '@yamada-ui/react';
+import { Button, FormControl, Select, Option, Input, VStack } from '@yamada-ui/react';
 
 import type { Payment } from '../../hooks/usePayments';
 
@@ -15,6 +15,12 @@ export const PaymentForm: FC<PaymentFormProps> = ({ addPayment }) => {
 
     const [isUserNameInvalid, setIsUserNameInvalid] = useState(false);
     const [isAmountInvalid, setIsAmountInvalid] = useState(false);
+    const paymentMethodOptions = [
+        '現金',
+        'クレジットカード',
+        'PayPay',
+        'その他'
+    ];
 
     const handleSubmit = () => {
     let isValid = true;
@@ -41,7 +47,7 @@ export const PaymentForm: FC<PaymentFormProps> = ({ addPayment }) => {
         userName: userName.trim(),
         date: date || new Date().toISOString().split('T')[0],
         amount: Number(amount),
-        paymentMethod: paymentMethod.trim(),
+        paymentMethod: paymentMethod || paymentMethodOptions[0],
     };
 
     addPayment(newPayment);
@@ -89,12 +95,18 @@ export const PaymentForm: FC<PaymentFormProps> = ({ addPayment }) => {
         />
         </FormControl>
 
-        <FormControl label="支払い方法">
-        <Input
-            placeholder="現金、クレジットカードなど"
-            value={paymentMethod}
-            onChange={(e) => setPaymentMethod(e.target.value)}
-        />
+            <FormControl label="支払い方法">
+                <Select
+                    placeholder="支払い方法を選択"
+                    value={paymentMethod}
+                    onChange={(value) => setPaymentMethod(value)}
+                >
+                    {paymentMethodOptions.map((method) => (
+                        <Option key={method} value={method}>
+                        {method}
+                </Option>
+                ))}
+                </Select>
         </FormControl>
 
         <Button type="submit" colorScheme="blue" alignSelf="flex-end">

@@ -5,7 +5,7 @@ export type Payment = {
     userName: string;
     date?: string;
     amount: number;
-    paymentMethod: string;
+    paymentMethod: PaymentMethod;
     isPaid: boolean;
 };
 
