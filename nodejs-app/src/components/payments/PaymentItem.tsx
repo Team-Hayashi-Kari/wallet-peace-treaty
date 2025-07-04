@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import { type FC, KeyboardEvent } from "react";
 
 import {
     Checkbox,
@@ -24,7 +24,7 @@ export const PaymentItem: FC<PaymentItemProps> = ({payment, updatePayment, delet
 };
 
     const handleDeleteClick = () => {
-        if (window.confirm(`「${payment.userName}」の¥${payment.amount.toLocalString()}のデータを本当に削除しますか？`)) {
+        if (window.confirm(`「${payment.userName}」の¥${payment.amount.toLocaleString()}のデータを本当に削除しますか？`)) {
             deletePayment(payment.id);
         }
     };

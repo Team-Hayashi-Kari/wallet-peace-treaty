@@ -1,5 +1,5 @@
 import { type FC } from "react";
-import { Box, Text, VStack, VSTack } from "@yamada-ui/react";
+import { Box, Text, VStack } from "@yamada-ui/react";
 
 import type { Payment } from '../hooks/usePayments';
 import { PaymentItem } from './PaymentItem';
@@ -13,8 +13,8 @@ type PaymentListProps = {
 export const PaymentList: FC<PaymentListProps> = ({payments, updatePayment, deletePayment }) => {
     if (payments.length === 0) {
         return (
-            <Box p="lg" borderWidth="1px" borderStyle="daashed" rounded="md" color="gray.500">
-                <Text textAlign="cecter">まだ支払いは登録されていません</Text>
+            <Box p="lg" borderWidth="1px" borderStyle="dashed" rounded="md" color="gray.500">
+                <Text textAlign="center">まだ支払いは登録されていません</Text>
             </Box>
         );
     }

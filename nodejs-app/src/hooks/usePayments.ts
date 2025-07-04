@@ -5,7 +5,7 @@ export type Payment = {
     userName: string;
     date?: string;
     amount: number;
-    PaymentMethod: string;
+    paymentMethod: string;
     isPaid: boolean;
 };
 
@@ -43,16 +43,24 @@ export const usePayments = () => {
         });
     } , []);
 
-    const updatePayment = useCallback((id: number, updateData: Partial<Omit<Payment, 'id'>>)=> {
-        setPayments((prevPayments) =>
+    const updatePayment = useCallback((id: number, updateData: Partial<Omit<Payment, 'id'>>) => {
+    setPayments((prevPayments) =>
+        prevPayments.map((payment) =>
+        payment.id === id ? { ...payment, ...updateData } : payment
+        )
+    );
+    }, []);
+
+    const deletePayment = useCallback((id: number) => {
+    setPayments((prevPayments) =>
         prevPayments.filter((payment) => payment.id !== id)
-        );
+    );
     }, []);
 
     return {
         payments,
-        setPayments,
         addPayment,
-        updatePayment
+        updatePayment,
+        deletePayment,
     };
 };
