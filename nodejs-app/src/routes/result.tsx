@@ -1,5 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
-import React, { useState, useMemo } from 'react';
+import { createFileRoute, RouteComponent } from '@tanstack/react-router'
 
 import {PaymentForm} from '@components/payments/PaymentForm';
 
