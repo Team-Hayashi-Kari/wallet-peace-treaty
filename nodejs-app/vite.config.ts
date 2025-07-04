@@ -31,13 +31,6 @@ export default defineConfig({
     force: true,
 	exclude: ['node_modules/.cache/storybook']
   },
-<<<<<<< HEAD
-  resolve: {
-        alias: {
-            '@components': '/src/components',
-        }
-    },
-=======
 	resolve: {
 		alias: {
 			'@components': '/src/components',
@@ -49,5 +42,4 @@ export default defineConfig({
 			interval: 1000
 		}
 	}
->>>>>>> 925655fb1be36c948098aed5a0cda6d34b9defa6
 })
