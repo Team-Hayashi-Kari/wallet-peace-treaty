@@ -1,14 +1,14 @@
 import { type FC } from "react";
 
 import {
-    Box,
     Checkbox,
     HStack,
-    IconButton,
     Text,
     VStack,
 } from "@yamada-ui/react";
-import { Trash2 } from "lucide-react";
+
+import { FontAwesomeIcon } from "@yamada-ui/fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import type { Payment } from '../hooks/usePayments';
 
@@ -29,13 +29,20 @@ export const PaymentItem: FC<PaymentItemProps> = ({payment, updatePayment, delet
         }
     };
 
+    const handleKeyPress = (e: KeyboardEvent<SVGSVGElement>) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleDeleteClick();
+        }
+    };
+
     return(
         <HStack
             p="md"
-            boder="1px solid"
+            border="1px solid"
             borderColor="gray.200"
             rounded="md"
-            apacing="md"
+            spacing="md"
             opacity={payment.isPaid ? 0.6 : 1}
             transition="opacity 0.2s"
         >
@@ -63,12 +70,17 @@ export const PaymentItem: FC<PaymentItemProps> = ({payment, updatePayment, delet
                 </Text>
             </VStack>
 
-            <IconButton
-                icon={<Trash2 size="1.2em" />}
-                variant="ghost"
-                colorScheme="danger"
+            <FontAwesomeIcon
+                icon={faTrash}
+                fontSize="1.2em"
+                color="danger"
+                cursor="pointer"
+                _hover={{ color: "danger-hover" }}
                 onClick={handleDeleteClick}
+                onKeyPress={handleKeyPress}
                 aria-label="削除"
+                role="button"
+                tabIndex={0}
             />
         </HStack>
     );

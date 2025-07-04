@@ -4,7 +4,7 @@ import {usePayments} from '../hooks/usePayments';
 import {PaymentForm} from '../components/payments/PaymentForm';
 import {PaymentList} from '../components/payments/PaymentList';
 
-export const PaymentPages = () => {
+export const PaymentsPage = () => {
     const {payments, addPayment, updatePayment, deletePayment} = usePayments();
 
     return(
@@ -14,7 +14,7 @@ export const PaymentPages = () => {
                     精算管理モード
                 </Heading>
 
-                <PaymentForm addPayment=(addPayment) />
+                <PaymentForm addPayment={addPayment} />
                 <Divider />
 
                 <PaymentList
