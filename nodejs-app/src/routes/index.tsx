@@ -1,16 +1,37 @@
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react'
 import { createFileRoute } from '@tanstack/react-router'
-import { VStack, Box, Heading, Text } from "@yamada-ui/react"
-
+import { Box, Button, Flex, Heading, HStack, Image, VStack, Text } from '@yamada-ui/react'
+// import { Button } from '@yamada-ui/react';
+// import { FontAwesomeIcon } from "@yamada-ui/fontawesome"
+// import { faPoo } from "@fortawesome/free-solid-svg-icons"
+// import reactLogo from './assets/react.svg'
+// import viteLogo from '/vite.svg'
+// import './App.css'
 
 export const Route = createFileRoute('/')({
   component: TopPage,
 })
 
+const titleStyle = css({
+	background: "linear-gradient(45deg,rgba(255, 201, 115, 1) 0%, rgba(255, 125, 41, 1) 100%)"
+})
 
 function TopPage() {
   return (
     <>
-      <Box p="md" rounded="lg" bg="#FFFAF0" maxW="800px" mx="auto" shadow="lg">
+    	<Box>
+				<HStack p="lg" height={'100vh'} justifyContent={'space-evenly'} css={titleStyle}>
+					<VStack color={'white'} textAlign={'center'} p="lg" alignItems="center" width="fit-content">
+						<Heading as={'h1'}>お財布平和条約</Heading>
+						<Box whiteSpace={'nowrap'}>割り勘、後から清算するのをスムーズに</Box>
+						<Button variant="outline" colorScheme="orange" >割り勘を始める</Button>
+					</VStack>
+					<Image src='https://soco-st.com/wp-content/themes/socost/upload/8194_line.svg' boxSize='lg' minBoxSize='sm' alt="SVG Image" fallback="https://placehold.co/384" display={{ base: 'block', md: 'none' }} />
+				</HStack>
+				{/* 説明部分 */}
+    	</Box>
+      <Box p="md" rounded="lg" bg="#FFFAF0" mx="auto" shadow="lg">
         <VStack padding="xl" alignItems="center">
           {/* --- 各セクションの構造をVStackでラップ --- */}
 
