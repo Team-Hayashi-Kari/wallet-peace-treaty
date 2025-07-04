@@ -1,41 +1,92 @@
-import { useState } from 'react'
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react'
 import { createFileRoute } from '@tanstack/react-router'
-import { FontAwesomeIcon } from "@yamada-ui/fontawesome"
-import { faPoo } from "@fortawesome/free-solid-svg-icons"
+import { Box, Button, Flex, Heading, HStack, Image, VStack, Text } from '@yamada-ui/react'
+// import { Button } from '@yamada-ui/react';
+// import { FontAwesomeIcon } from "@yamada-ui/fontawesome"
+// import { faPoo } from "@fortawesome/free-solid-svg-icons"
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
-import './App.css'
+// import './App.css'
 
 export const Route = createFileRoute('/')({
-  component: RouteComponent,
+  component: TopPage,
 })
 
-function RouteComponent() {
-  const [count, setCount] = useState(0)
+const titleStyle = css({
+	background: "linear-gradient(45deg,rgba(255, 201, 115, 1) 0%, rgba(255, 125, 41, 1) 100%)"
+})
 
+function TopPage() {
   return (
     <>
-      <div>
-				<FontAwesomeIcon icon={faPoo} />
-        <a href="https://vite.dev" target="_blank">
-          {/* <img src={viteLogo} className="logo" alt="Vite logo" /> */}
-        </a>
-        <a href="https://react.dev" target="_blank">
-          {/* <img src={reactLogo} className="logo react" alt="React logo" /> */}
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    	<Box>
+				<HStack p="lg" height={'100vh'} justifyContent={'space-evenly'} css={titleStyle}>
+					<VStack color={'white'} textAlign={'center'} p="lg" alignItems="center" width="fit-content">
+						<Heading as={'h1'}>お財布平和条約</Heading>
+						<Box whiteSpace={'nowrap'}>割り勘、後から清算するのをスムーズに</Box>
+						<Button variant="outline" colorScheme="orange" >割り勘を始める</Button>
+					</VStack>
+					<Image src='https://soco-st.com/wp-content/themes/socost/upload/8194_line.svg' boxSize='lg' minBoxSize='sm' alt="SVG Image" fallback="https://placehold.co/384" display={{ base: 'block', md: 'none' }} />
+				</HStack>
+				{/* 説明部分 */}
+    	</Box>
+      <Box p="md" rounded="lg" bg="#FFFAF0" mx="auto" shadow="lg">
+        <VStack padding="xl" alignItems="center">
+          {/* --- 各セクションの構造をVStackでラップ --- */}
+
+          {/* おしながきセクション */}
+          <Box mb="lg" mx="auto" maxW="700px">
+            <VStack padding="xl" alignItems="center"> {/* 見出しと本文のグループをVStackでラップし、中央揃え */}
+              <Heading size="2xl" mb="md" color="warning.500"> {/* このHeadingはVStackのalignItems="center"で中央に */}
+                おしながき
+              </Heading>
+              {/* Textコンポーネントにはpx="md"とmy="0"を維持しつつ、Boxの中では左揃え */}
+              <Text fontSize="lg" color="gray.700" lineHeight="2.2" margin="1" textAlign="left" px="md" my="0">
+                みんなでご飯を食べたとき、割り勘するの大変じゃないですか？<br/>
+                そんな悩みを解決するためのツールです。<br/>
+                このツールを使えば、割り勘をスムーズに行えて、割り勘のストレスがなくなるかも…？<br/>
+                みんなで楽しくご飯を食べよう！
+              </Text>
+            </VStack>
+          </Box>
+
+          {/* 電卓モードセクション */}
+          <Box mb="lg" mx="auto" maxW="700px">
+            <VStack padding="xl" alignItems="center"> {/* 同様にVStackでラップ */}
+              <Heading size="xl" mb="md" color="warning.600">
+                電卓モード
+              </Heading>
+              <Text fontSize="lg" color="gray.700" lineHeight="2.2" margin="1" textAlign="left" px="md" my="0">
+                自分が食べたものがいくらか計算したいあなたにはこのモード！<br/>
+                電卓を複数展開することが出来て、タイトルをつけてメモできるようになっているよ！
+              </Text>
+            </VStack>
+          </Box>
+
+          {/* 後から精算モードセクション */}
+          <Box mb="lg" mx="auto" maxW="700px">
+            <VStack padding="xl" alignItems="center"> {/* 同様にVStackでラップ */}
+              <Heading size="xl" mb="md" color="warning.600">
+                後から精算モード
+              </Heading>
+              <Text fontSize="lg" color="gray.700" lineHeight="2.2" margin="1" gap="8" textAlign="left" px="md" my="0">
+                誰かが代理で払ってから割り勘したい時にはこのモード！<br/>
+                誰がその商品を頼んで、いくら払えばいいのかを計算出来る！<br/>
+                ユーザーを登録して商品を割り振ってみればあら不思議！<br/>
+                一人いくら払えばいいかがパッと分かる！
+              </Text>
+            </VStack>
+          </Box>
+
+          {/* 最後のメッセージセクション */}
+          <Box mb="lg" mx="auto" maxW="700px">
+            <Text fontSize="2xl" color="warning.400" lineHeight="tall" textAlign="center" my="0">
+              Let’s 快適な割り勘ライフを！
+            </Text>
+          </Box>
+        </VStack>
+      </Box> 
     </>
   )
 }
