@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { FormControl, HStack, IconButton, Input, Tag } from "@yamada-ui/react";
 import { useState, type FC } from "react";
-import GoodsSettle from "./GoodsSettle";
 import { FontAwesomeIcon } from "@yamada-ui/fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
@@ -46,7 +45,6 @@ const AddUserForm: FC<AddUserFormProps> = ({ users, setUsers }) => {
 
   return (
     <HStack shadow="lg" p="lg" rounded="lg" alignItems="flex-start">
-      <GoodsSettle />
       <FormControl
         required
         invalid={isUserNameInvalid}
