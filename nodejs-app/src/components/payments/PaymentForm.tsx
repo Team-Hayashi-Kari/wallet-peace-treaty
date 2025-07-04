@@ -12,6 +12,7 @@ export const PaymentForm: FC<PaymentFormProps> = ({ addPayment }) => {
     const [date, setDate] = useState('');
     const [amount, setAmount] = useState('');
     const [paymentMethod, setPaymentMethod] = useState('');
+    const [otherPaymentMethod, setOtherPaymentMethod] = useState('');
 
     const [isUserNameInvalid, setIsUserNameInvalid] = useState(false);
     const [isAmountInvalid, setIsAmountInvalid] = useState(false);
@@ -43,6 +44,15 @@ export const PaymentForm: FC<PaymentFormProps> = ({ addPayment }) => {
         return;
     }
 
+    const finalPaymentMethod = paymentMethod === 'その他'
+        ? otherPaymentMethod.trim()
+        : paymentMethod || paymentMethodOptions[0];
+
+    if (finalPaymentMethod ===''){
+        alert('その他を選択した場合は支払い方法を入力してください。');
+        return;
+    }
+
     const newPayment = {
         userName: userName.trim(),
         date: date || new Date().toISOString().split('T')[0],
@@ -56,6 +66,7 @@ export const PaymentForm: FC<PaymentFormProps> = ({ addPayment }) => {
     setDate('');
     setAmount('');
     setPaymentMethod('');
+    setOtherPaymentMethod('');
     };
 
     return (
@@ -109,6 +120,16 @@ export const PaymentForm: FC<PaymentFormProps> = ({ addPayment }) => {
                 </Select>
         </FormControl>
 
+        {paymentMethod === 'その他' && (
+            <FormControl>
+                <Input
+                    placeholder="支払い方法を入力"
+                    value={otherPaymentMethod}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setOtherPaymentMethod(e.target.value)}
+                    autoForcus
+                />
+        </FormControl>
+        )}
         <Button type="submit" colorScheme="blue" alignSelf="flex-end">
         この内容で登録する
         </Button>
