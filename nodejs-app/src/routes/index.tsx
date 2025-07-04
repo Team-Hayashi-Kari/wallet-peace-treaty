@@ -44,7 +44,7 @@ const titleStyle = css({
 function TopPage() {
   return (
     <Box>
-			<HStack bg={'orange.300'} p="lg" height={'100vh'} justifyContent={'space-evenly'} css={titleStyle}>
+			<HStack p="lg" height={'100vh'} justifyContent={'space-evenly'} css={titleStyle}>
 				<VStack color={'white'} textAlign={'center'} p="lg" alignItems="center" width="fit-content">
 					<Heading as={'h1'}>お財布平和条約</Heading>
 					<Box whiteSpace={'nowrap'}>割り勘、後から清算するのをスムーズに</Box>
