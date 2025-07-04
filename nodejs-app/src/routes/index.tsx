@@ -1,128 +1,71 @@
-/** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react'
 import { createFileRoute } from '@tanstack/react-router'
-// import { Button } from '@yamada-ui/react';
-// import { FontAwesomeIcon } from "@yamada-ui/fontawesome"
-// import { faPoo } from "@fortawesome/free-solid-svg-icons"
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
+import { VStack, Box, Heading, Text } from "@yamada-ui/react"
+
 
 export const Route = createFileRoute('/')({
   component: TopPage,
 })
 
-const styles = {
-  container: css({
-    maxWidth: '1200px',
-    margin: '0 auto',
-    padding: '2rem'
-  }),
-  headingWrapper: css({
-    background: 'linear-gradient(45deg, #FFC973, #FF7D29)', 
-    marginBottom: '1rem',
-    padding: '2rem',
-    position: 'relative',
-    minHeight: '500px',
-    overflow: 'hidden',
-  }),
-  title: css({
-    color: '#1a1a1a',
-    fontSize: '3.5rem',
-    position: 'absolute', 
-    top: '35%',
-    left: '100px',
-    whiteSpace: 'nowrap',
-
-    '@media (max-width: 768px)': { // 画面幅が768px以下の時に適用
-      fontSize: '2.5rem', // フォントサイズを小さくする
-      left: '50px', // 左からの位置も調整
-      transform: 'translateX(0)', // 固定ピクセル値なのでtransformは不要になることが多い
-      whiteSpace: 'normal', // 必要であれば折り返しを許可
-    },
-  }),
-  subTitle: css({
-    color: '#1a1a1a',
-    fontSize: '1.2rem',
-    position: 'absolute',
-    top: '55%',
-    left: '150px',
-    textAlign: 'center',
-    whiteSpace: 'nowrap',
-
-    '@media (max-width: 768px)': {
-      fontSize: '0.9rem',
-      top: '50%',
-      left: '80px',
-      whiteSpace: 'normal',
-    },
-  }),
-  explanation: css({
-    color: '#1a1a1a',
-    fontSize: '0.9rem',
-    position: 'absolute',
-    left: '30px',
-
-    '@media (max-width: 768px)': {
-      fontSize: '0.55rem',
-      left: '15px',
-      whiteSpace: 'normal',
-    },
-  }),
-  readTheDocs: css({
-    color: '#1a1a1a',
-    fontSize: '0.9rem',
-    textAlign: 'center',
-    marginTop: '1rem', 
-    '@media (max-width: 768px)': {
-      fontSize: '0.55rem',
-    },
-  }),
-  button: css({
-    position: 'absolute',
-    top: '55%',
-    left: '150px',
-    textAlign: 'center',
-    whiteSpace: 'nowrap',
-  })
-}
 
 function TopPage() {
   return (
     <>
-      <div css={styles.headingWrapper}>
-        <h1 css={styles.title}>お財布平和条約</h1>
-        <h3 css={styles.subTitle}>割り勘をスムーズに行うツール</h3>
+      <Box p="md" rounded="lg" bg="#FFFAF0" maxW="800px" mx="auto" shadow="lg">
+        <VStack padding="xl" alignItems="center">
+          {/* --- 各セクションの構造をVStackでラップ --- */}
 
-      {/* <div>
-        <Button
-          colorScheme="orange"
-          size="lg"         
-          variant="solid"   
-          borderRadius="full"
-          onClick={() => alert('割り勘を始めましょう！')}
-          // その他のプロパティも多数あります
-          // 例えば、width="200px" や isLoading={true} など
-        >
-          割り勘を始める
-        </Button>
-      </div> */}
-        <div css={styles.button}>
-          {/* <button css={styles.button} onClick={() => alert('割り勘を始めましょう！')}>
-            割り勘を始める
-          </button> */}
-          {/* <p>
-            Edit <code>src/App.tsx</code> and save to test HMR
-          </p> */}
-        </div>
-      </div>
-      <div css={styles.explanation}>
-        <h2>みんなとご飯を食べたとき、割り勘するの大変じゃないですか？</h2>
-        <h2>そんな悩み、解決します</h2>
-      </div>
-      <p css={styles.readTheDocs}>
-        {/* Click on the Vite and React logos to learn more */}
-      </p>
+          {/* おしながきセクション */}
+          <Box mb="lg" mx="auto" maxW="700px">
+            <VStack padding="xl" alignItems="center"> {/* 見出しと本文のグループをVStackでラップし、中央揃え */}
+              <Heading size="2xl" mb="md" color="warning.500"> {/* このHeadingはVStackのalignItems="center"で中央に */}
+                おしながき
+              </Heading>
+              {/* Textコンポーネントにはpx="md"とmy="0"を維持しつつ、Boxの中では左揃え */}
+              <Text fontSize="lg" color="gray.700" lineHeight="2.2" margin="1" textAlign="left" px="md" my="0">
+                みんなでご飯を食べたとき、割り勘するの大変じゃないですか？<br/>
+                そんな悩みを解決するためのツールです。<br/>
+                このツールを使えば、割り勘をスムーズに行えて、割り勘のストレスがなくなるかも…？<br/>
+                みんなで楽しくご飯を食べよう！
+              </Text>
+            </VStack>
+          </Box>
+
+          {/* 電卓モードセクション */}
+          <Box mb="lg" mx="auto" maxW="700px">
+            <VStack padding="xl" alignItems="center"> {/* 同様にVStackでラップ */}
+              <Heading size="xl" mb="md" color="warning.600">
+                電卓モード
+              </Heading>
+              <Text fontSize="lg" color="gray.700" lineHeight="2.2" margin="1" textAlign="left" px="md" my="0">
+                自分が食べたものがいくらか計算したいあなたにはこのモード！<br/>
+                電卓を複数展開することが出来て、タイトルをつけてメモできるようになっているよ！
+              </Text>
+            </VStack>
+          </Box>
+
+          {/* 後から精算モードセクション */}
+          <Box mb="lg" mx="auto" maxW="700px">
+            <VStack padding="xl" alignItems="center"> {/* 同様にVStackでラップ */}
+              <Heading size="xl" mb="md" color="warning.600">
+                後から精算モード
+              </Heading>
+              <Text fontSize="lg" color="gray.700" lineHeight="2.2" margin="1" gap="8" textAlign="left" px="md" my="0">
+                誰かが代理で払ってから割り勘したい時にはこのモード！<br/>
+                誰がその商品を頼んで、いくら払えばいいのかを計算出来る！<br/>
+                ユーザーを登録して商品を割り振ってみればあら不思議！<br/>
+                一人いくら払えばいいかがパッと分かる！
+              </Text>
+            </VStack>
+          </Box>
+
+          {/* 最後のメッセージセクション */}
+          <Box mb="lg" mx="auto" maxW="700px">
+            <Text fontSize="2xl" color="warning.400" lineHeight="tall" textAlign="center" my="0">
+              Let’s 快適な割り勘ライフを！
+            </Text>
+          </Box>
+        </VStack>
+      </Box> 
     </>
   )
 }
