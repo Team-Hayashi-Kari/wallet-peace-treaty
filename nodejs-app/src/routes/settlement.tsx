@@ -54,7 +54,7 @@ function RouteComponent() {
       >
 				<VStack shadow="lg" p="lg" rounded="lg" justifyContent='space-between' bg="white">
 					<GoodsList goods={goods} setGoods={setGoods} />
-					<GoodsInsertForm keyMax={goods.length > 0 ? Math.max(...goods.map(item => item.id)) : 0} setGoods={setGoods}/>
+					<GoodsInsertForm goods={goods} setGoods={setGoods}/>
 				</VStack>
 				<GridItem shadow="lg" p="lg" rounded="lg" bg="white">
 					<AddUserForm users={users} setUsers={setUsers}/>

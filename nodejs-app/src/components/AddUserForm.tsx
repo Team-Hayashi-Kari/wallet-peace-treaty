@@ -21,7 +21,7 @@ const AddUserForm: FC<AddUserFormProps> = ({ users, setUsers }) => {
 
   const addUser = (userName: string) => {
     const newUser: User = {
-      id: Math.max(...users.map((item) => item.id)) + 1 || 1,
+      id: (Math.max(0, ...users.map((item) => item.id)) + 1),
       name: userName,
       goodsIds: [],
     };
