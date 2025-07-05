@@ -104,7 +104,7 @@ const ProductAssignment: FC<ProductAssignmentProps> = ({
 									).length;
 									if (!item) return null;
 									return (
-										<HStack margin={2} key={item.id}>
+										<HStack margin={2} key={item.id} w="100%" justifyContent="space-between">
 											<Box key={goodsId} margin={2}>
 												{item?.name || "undefined"} - {item?.price || 0} 円 x {goodsCount ?? 1}
 											</Box>
