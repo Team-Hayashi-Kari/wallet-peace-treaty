@@ -42,7 +42,7 @@ function RouteComponent() {
 	const [users, setUsers] = useState<User[]>([]);
 
   return (
-    <Box p="md" rounded="md" maxW={{ base: '100%', md: '600px'}} mx="auto">
+    <Box p="md" rounded="md" mx="auto">
       <Heading as="h2" size="xl" mb="lg" textAlign="center">
         後から清算
       </Heading>
@@ -54,7 +54,7 @@ function RouteComponent() {
         gap="md"
       >
 				<VStack shadow="lg" p="lg" rounded="lg" justifyContent='space-between' bg="white">
-					<GoodsList goods={goods} />
+					<GoodsList goods={goods} setGoods={setGoods} />
 					<GoodsInsertForm keyMax={goods.length > 0 ? Math.max(...goods.map(item => item.id)) : 0} setGoods={setGoods}/>
 				</VStack>
 				<GridItem shadow="lg" p="lg" rounded="lg" bg="white">

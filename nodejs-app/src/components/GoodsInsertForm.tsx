@@ -96,7 +96,7 @@ const GoodsComponent: FC<GoodsComponentProps> = ({ keyMax, setGoods }) => {
       >
         <Input
           type="text"
-          placeholder="冷たい火山"
+          placeholder="商品名"
           value={name} // 入力値とstateをバインド
           onChange={(e) => {
 						setName(e.target.value);
