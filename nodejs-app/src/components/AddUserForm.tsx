@@ -44,12 +44,11 @@ const AddUserForm: FC<AddUserFormProps> = ({ users, setUsers }) => {
   };
 
   return (
-    <HStack shadow="lg" p="lg" rounded="lg" alignItems="flex-start">
+    <HStack shadow="lg" p="lg" rounded="lg" alignItems="flex-end">
       <FormControl
-        required
         invalid={isUserNameInvalid}
+        label="ユーザー追加"
         errorMessage="ユーザー名は必須です"
-        requiredIndicator={<Tag size="sm" colorScheme="red" ms={2}>required</Tag>}
       >
         <Input
           placeholder="ユーザー名"
