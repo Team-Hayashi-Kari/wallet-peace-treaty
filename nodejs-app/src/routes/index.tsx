@@ -1,13 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { createFileRoute } from '@tanstack/react-router'
-import { Box, Button, Flex, Heading, HStack, Image, VStack, Text } from '@yamada-ui/react'
-// import { Button } from '@yamada-ui/react';
-// import { FontAwesomeIcon } from "@yamada-ui/fontawesome"
-// import { faPoo } from "@fortawesome/free-solid-svg-icons"
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
+import { Box, Button, Heading, HStack, Image, VStack, Text } from '@yamada-ui/react'
 
 export const Route = createFileRoute('/')({
   component: TopPage,
@@ -25,19 +19,22 @@ function TopPage() {
 					<VStack color={'white'} textAlign={'center'} p="lg" alignItems="center" width="fit-content">
 						<Heading as={'h1'}>お財布平和条約</Heading>
 						<Box whiteSpace={'nowrap'}>割り勘、後から清算するのをスムーズに</Box>
-						<Button variant="outline" colorScheme="orange" >割り勘を始める</Button>
+						<HStack>
+							<Button as='a' href='/calc' p='lx' variant="outline" colorScheme="orange" rounded='full' color='white'>マルチ電卓を開く</Button>
+							<Button as='a' href='/settlement' p='lx' variant="outline" colorScheme="orange" rounded='full' color='white'>精密割り勘をする</Button>
+						</HStack>
 					</VStack>
 					<Image src='https://soco-st.com/wp-content/themes/socost/upload/8194_line.svg' boxSize='lg' minBoxSize='sm' alt="SVG Image" fallback="https://placehold.co/384" display={{ base: 'block', md: 'none' }} />
 				</HStack>
 				{/* 説明部分 */}
     	</Box>
-      <Box p="md" rounded="lg" bg="#FFFAF0" mx="auto" shadow="lg">
-        <VStack padding="xl" alignItems="center">
+      <Box p={{base: 'lg', md: 'none'}} rounded="lg" bg="#FFFAF0" mx="auto" shadow="lg">
+        <VStack alignItems="center">
           {/* --- 各セクションの構造をVStackでラップ --- */}
 
           {/* おしながきセクション */}
           <Box mb="lg" mx="auto" maxW="700px">
-            <VStack padding="xl" alignItems="center"> {/* 見出しと本文のグループをVStackでラップし、中央揃え */}
+            <VStack alignItems="center"> {/* 見出しと本文のグループをVStackでラップし、中央揃え */}
               <Heading size="2xl" mb="md" color="warning.500"> {/* このHeadingはVStackのalignItems="center"で中央に */}
                 おしながき
               </Heading>
@@ -53,21 +50,22 @@ function TopPage() {
 
           {/* 電卓モードセクション */}
           <Box mb="lg" mx="auto" maxW="700px">
-            <VStack padding="xl" alignItems="center"> {/* 同様にVStackでラップ */}
-              <Heading size="xl" mb="md" color="warning.600">
+            <VStack alignItems="center"> {/* 同様にVStackでラップ */}
+              <Heading size="2xl" mb="md" color="warning.500">
                 電卓モード
               </Heading>
               <Text fontSize="lg" color="gray.700" lineHeight="2.2" margin="1" textAlign="left" px="md" my="0">
                 自分が食べたものがいくらか計算したいあなたにはこのモード！<br/>
                 電卓を複数展開することが出来て、タイトルをつけてメモできるようになっているよ！
               </Text>
+							<Button as='a' href='/calc' p='lg' variant="outline" colorScheme="orange" rounded='full'>マルチ電卓を開く</Button>
             </VStack>
           </Box>
 
           {/* 後から精算モードセクション */}
           <Box mb="lg" mx="auto" maxW="700px">
-            <VStack padding="xl" alignItems="center"> {/* 同様にVStackでラップ */}
-              <Heading size="xl" mb="md" color="warning.600">
+            <VStack alignItems="center"> {/* 同様にVStackでラップ */}
+              <Heading size="2xl" mb="md" color="warning.500">
                 後から精算モード
               </Heading>
               <Text fontSize="lg" color="gray.700" lineHeight="2.2" margin="1" gap="8" textAlign="left" px="md" my="0">
@@ -76,11 +74,27 @@ function TopPage() {
                 ユーザーを登録して商品を割り振ってみればあら不思議！<br/>
                 一人いくら払えばいいかがパッと分かる！
               </Text>
+							<Button as='a' href='/settlement' p='lg' variant="outline" colorScheme="orange" rounded='full'>精密割り勘をする</Button>
+            </VStack>
+          </Box>
+
+					{/* 支払い状況管理 */}
+          <Box mb="lg" mx="auto" maxW="700px">
+            <VStack alignItems="center"> {/* 同様にVStackでラップ */}
+              <Heading size="2xl" mb="md" color="warning.500">
+                「あとで」モード
+              </Heading>
+              <Text fontSize="lg" color="gray.700" lineHeight="2.2" margin="1" gap="8" textAlign="left" px="md" my="0">
+                支払いを立て替えた後、誰からどの手段で返してもらう(返してもらった)かわからなくなることありませんか？<br/>
+								そんなあなたにこのモード！<br/>
+								名前や金額から日時、返金方法まで記録できます！
+              </Text>
+							<Button as='a' href='/result' p='lg' variant="outline" colorScheme="orange" rounded='full'>支払い状況管理をする</Button>
             </VStack>
           </Box>
 
           {/* 最後のメッセージセクション */}
-          <Box mb="lg" mx="auto" maxW="700px">
+          <Box mb="lg" mx="auto">
             <Text fontSize="2xl" color="warning.400" lineHeight="tall" textAlign="center" my="0">
               Let’s 快適な割り勘ライフを！
             </Text>
