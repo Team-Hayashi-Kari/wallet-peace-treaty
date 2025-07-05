@@ -1,13 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { createFileRoute } from '@tanstack/react-router'
-import { Box, Button, Flex, Heading, HStack, Image, VStack, Text } from '@yamada-ui/react'
-// import { Button } from '@yamada-ui/react';
-// import { FontAwesomeIcon } from "@yamada-ui/fontawesome"
-// import { faPoo } from "@fortawesome/free-solid-svg-icons"
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
+import { Box, Button, Heading, HStack, Image, VStack, Text } from '@yamada-ui/react'
 
 export const Route = createFileRoute('/')({
   component: TopPage,
