@@ -5,7 +5,6 @@ import {
   FormControl,
   HStack,
   Input,
-  Tag,
   VStack,
 } from "@yamada-ui/react";
 
@@ -18,11 +17,11 @@ type Goods = {
 };
 
 type GoodsComponentProps = {
-  keyMax: number; // 現在の最大のID (新しい商品のIDとして使う)
+  goods: Goods[]; // 現在の最大のID (新しい商品のIDとして使う)
   setGoods: React.Dispatch<React.SetStateAction<Goods[]>>;
 };
 
-const GoodsComponent: FC<GoodsComponentProps> = ({ keyMax, setGoods }) => {
+const GoodsComponent: FC<GoodsComponentProps> = ({ goods, setGoods }) => {
   // フォームの入力値を管理するためのstate
   const [name, setName] = useState<string>('');
   const [price, setPrice] = useState<string>('');
@@ -72,7 +71,7 @@ const GoodsComponent: FC<GoodsComponentProps> = ({ keyMax, setGoods }) => {
     // 全ての入力が有効な場合のみ、商品を追加
     if (isValid) {
       const newGoods: Goods = {
-        id: keyMax + 1, // 現在の最大IDに1を足して新しいIDとする
+        id: (Math.max(0, ...goods.map((item) => item.id)) + 1), // 現在の最大IDに1を足して新しいIDとする
         name: name.trim(),
         price: priceValue,
 				amount: amountValue,
@@ -96,7 +95,7 @@ const GoodsComponent: FC<GoodsComponentProps> = ({ keyMax, setGoods }) => {
       >
         <Input
           type="text"
-          placeholder="冷たい火山"
+          placeholder="商品名"
           value={name} // 入力値とstateをバインド
           onChange={(e) => {
 						setName(e.target.value);

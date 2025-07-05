@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { faDeleteLeft } from "@fortawesome/free-solid-svg-icons";
+import { faDeleteLeft, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@yamada-ui/fontawesome";
-import { Box, VStack, For, HStack, IconButton, Separator } from "@yamada-ui/react";
+import { Box, VStack, For, HStack, IconButton, Separator, Spacer } from "@yamada-ui/react";
 import type { FC } from "react";
 
 type Goods = {
@@ -80,11 +80,20 @@ const ProductAssignment: FC<ProductAssignmentProps> = ({
 					<HStack
 						key={user.id}
 						w="100%"
-						justifyContent="space-between"
+						justifyContent="flex-start"
 						p="md"
 						borderBottom="1px solid #e2e8f0"
 					>
+						<IconButton 
+							icon={<FontAwesomeIcon icon={faTrash} />}
+							onClick={() => {
+								if (setUsers) {
+									setUsers((prevUsers) => prevUsers.filter((u) => u.id !== user.id));
+								}
+							}}
+						/>
 						<Box>{user.name}</Box>
+						<Spacer />
 						<Box>
 							<For each={[...new Set(user.goodsIds)]}>
 								{/* 商品表示部 */}
