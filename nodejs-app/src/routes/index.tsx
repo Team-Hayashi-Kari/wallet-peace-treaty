@@ -19,19 +19,22 @@ function TopPage() {
 					<VStack color={'white'} textAlign={'center'} p="lg" alignItems="center" width="fit-content">
 						<Heading as={'h1'}>お財布平和条約</Heading>
 						<Box whiteSpace={'nowrap'}>割り勘、後から清算するのをスムーズに</Box>
-						<Button variant="outline" colorScheme="orange" >割り勘を始める</Button>
+						<HStack>
+							<Button as='a' href='/calc' p='lx' variant="outline" colorScheme="orange" rounded='full' color='white'>マルチ電卓を開く</Button>
+							<Button as='a' href='/settlement' p='lx' variant="outline" colorScheme="orange" rounded='full' color='white'>精密割り勘をする</Button>
+						</HStack>
 					</VStack>
 					<Image src='https://soco-st.com/wp-content/themes/socost/upload/8194_line.svg' boxSize='lg' minBoxSize='sm' alt="SVG Image" fallback="https://placehold.co/384" display={{ base: 'block', md: 'none' }} />
 				</HStack>
 				{/* 説明部分 */}
     	</Box>
-      <Box p="md" rounded="lg" bg="#FFFAF0" mx="auto" shadow="lg">
-        <VStack padding="xl" alignItems="center">
+      <Box p={{base: 'lg', md: 'none'}} rounded="lg" bg="#FFFAF0" mx="auto" shadow="lg">
+        <VStack alignItems="center">
           {/* --- 各セクションの構造をVStackでラップ --- */}
 
           {/* おしながきセクション */}
-          <Box mb="lg" mx="auto" maxW="700px">
-            <VStack padding="xl" alignItems="center"> {/* 見出しと本文のグループをVStackでラップし、中央揃え */}
+          <Box mb="lg" mx="auto">
+            <VStack alignItems="center"> {/* 見出しと本文のグループをVStackでラップし、中央揃え */}
               <Heading size="2xl" mb="md" color="warning.500"> {/* このHeadingはVStackのalignItems="center"で中央に */}
                 おしながき
               </Heading>
@@ -47,7 +50,7 @@ function TopPage() {
 
           {/* 電卓モードセクション */}
           <Box mb="lg" mx="auto" maxW="700px">
-            <VStack padding="xl" alignItems="center"> {/* 同様にVStackでラップ */}
+            <VStack alignItems="center"> {/* 同様にVStackでラップ */}
               <Heading size="xl" mb="md" color="warning.600">
                 電卓モード
               </Heading>
@@ -55,6 +58,7 @@ function TopPage() {
                 自分が食べたものがいくらか計算したいあなたにはこのモード！<br/>
                 電卓を複数展開することが出来て、タイトルをつけてメモできるようになっているよ！
               </Text>
+							<Button as='a' href='/calc' p='lg' variant="outline" colorScheme="orange" rounded='full'>マルチ電卓を開く</Button>
             </VStack>
           </Box>
 
@@ -70,6 +74,7 @@ function TopPage() {
                 ユーザーを登録して商品を割り振ってみればあら不思議！<br/>
                 一人いくら払えばいいかがパッと分かる！
               </Text>
+							<Button as='a' href='/calc' p='lg' variant="outline" colorScheme="orange" rounded='full'>精密割り勘をする</Button>
             </VStack>
           </Box>
 
