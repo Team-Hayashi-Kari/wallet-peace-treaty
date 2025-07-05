@@ -35,8 +35,8 @@ type User = {
 
 function RouteComponent() {
 	// test code
-	const [goods, setGoods] = useState<Goods[]>([{id: 1, name: '商品A', price: 1000, amount: 2}, {id: 2, name: '商品B', price: 1000, amount: 2}, {id: 3, name: '商品C', price: 1000, amount: 2}]);
-	const [users, setUsers] = useState<User[]>([{id: 1, name: 'ユーザーA', goodsIds: []}]);
+	const [goods, setGoods] = useState<Goods[]>([{id: 1, name: 'ルーム代', price: 490, amount: 2}, {id: 2, name: 'ルーム代割引', price: -100, amount: 1}, {id: 3, name: '冷たい火山', price: 360, amount: 1}, {id: 4, name: 'ポテト', price: 290, amount: 1}]);
+	const [users, setUsers] = useState<User[]>([{id: 1, name: 'ユーザーA', goodsIds: []}, {id: 1, name: 'ユーザーB', goodsIds: []}]);
 	// const [goods, setGoods] = useState<Goods[]>([]);
 	// const [users, setUsers] = useState<User[]>([]);
 
