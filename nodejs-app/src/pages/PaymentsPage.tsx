@@ -18,7 +18,7 @@ export const PaymentsPage = () => {
                     templateColumns="1fr 1fr"
                     gap="lg"
                 >
-                    <GridItem>
+                    <GridItem bg="white">
                         <VStack>
                             <PaymentForm addPayment={addPayment} />
                         </VStack>
