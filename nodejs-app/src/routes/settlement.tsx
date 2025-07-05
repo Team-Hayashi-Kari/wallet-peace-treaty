@@ -3,7 +3,6 @@ import { createFileRoute } from "@tanstack/react-router";
 // import { css } from '@emotion/react'
 import {
   Box,
-  Button,
   Grid,
   GridItem,
   Heading,
@@ -42,7 +41,7 @@ function RouteComponent() {
 	const [users, setUsers] = useState<User[]>([]);
 
   return (
-    <Box p="md" rounded="md" maxW={{ base: '100%', md: '600px'}} mx="auto">
+    <Box p="md" rounded="md" mx="auto">
       <Heading as="h2" size="xl" mb="lg" textAlign="center">
         後から清算
       </Heading>
@@ -54,8 +53,8 @@ function RouteComponent() {
         gap="md"
       >
 				<VStack shadow="lg" p="lg" rounded="lg" justifyContent='space-between' bg="white">
-					<GoodsList goods={goods} />
-					<GoodsInsertForm keyMax={goods.length > 0 ? Math.max(...goods.map(item => item.id)) : 0} setGoods={setGoods}/>
+					<GoodsList goods={goods} setGoods={setGoods} />
+					<GoodsInsertForm goods={goods} setGoods={setGoods}/>
 				</VStack>
 				<GridItem shadow="lg" p="lg" rounded="lg" bg="white">
 					<AddUserForm users={users} setUsers={setUsers}/>
