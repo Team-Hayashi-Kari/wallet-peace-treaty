@@ -34,6 +34,7 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			'@components': '/src/components',
+			'@theme': '/src/theme',
 		}
 	},
 	server: {

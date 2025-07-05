@@ -24,7 +24,8 @@
     "noUncheckedSideEffectImports": true,
 		"baseUrl": "./src",
 		"paths": {
-			"@components/*": ["./components/*"]
+			"@components/*": ["./components/*"],
+			"@theme/*": ["./theme/*"]
 		}
   },
   "include": ["src"]
